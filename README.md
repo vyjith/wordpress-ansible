@@ -1,5 +1,6 @@
 # wordpress-ansible
 -------------------------------------------------- 
+```
 ---
 - name: "Apache installation and site hosting"
   become: true
@@ -101,4 +102,4 @@
       service:
         name: httpd
         state: restarted
-
+```
