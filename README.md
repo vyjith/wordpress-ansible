@@ -1,6 +1,3 @@
-# wordpress-ansible
--------------------------------------------------- 
-```
 ---
 - name: "Apache installation and site hosting"
   become: true
@@ -14,10 +11,10 @@
     http_port: 80
     http_host: wordpress.vyjithks.tk
     http_conf: wordpress.vyjithks.tk.conf
-    mysql_root_password: vyjith1234
+    mysql_root_password: "{{ (lookup('aws_secret', 'keyofmysql', region='ap-south-1') | from_json).mysql_root_password }}"
     mysql_db: wordpress
     mysql_user: wordpress
-    mysql_password: wordpress
+    mysql_password: "{{ (lookup('aws_secret', 'keyofmysql', region='ap-south-1') | from_json).mysql_password }}"
 
   tasks:
 
@@ -102,4 +99,3 @@
       service:
         name: httpd
         state: restarted
-```
